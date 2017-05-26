@@ -1,0 +1,7 @@
+---
+- name: Load PHP modules that are not automatically loaded with php5enmod
+  shell: php5enmod "{{ item }}"
+  with_items: "{{ php_enable_module }}"
+  when: php_enable_module is defined
+  register: reg_php_enable_module
+  changed_when: reg_php_enable_module.stdout != ""
